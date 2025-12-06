@@ -2,7 +2,7 @@ import IssueFormSkeleton from "../_components/IssueFormSkeleton"
 
 const newIssuePageLoading = () => {
   return (
-    <IssueFormSkeleton/> 
+    <IssueFormSkeleton/>
   )
 }
 

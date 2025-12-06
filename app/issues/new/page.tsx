@@ -1,6 +1,7 @@
 'use client'
 import dynamic from "next/dynamic";
 import IssueFormSkeleton from "../_components/IssueFormSkeleton";
+import { Container } from "@radix-ui/themes";
 
 const IssueForm = dynamic(
   () => import('@/app/issues/_components/IssueForm'),
@@ -11,7 +12,9 @@ const IssueForm = dynamic(
 )
 const NewIssuePage = () => {
   return (
-    <IssueForm/>
+    <Container>
+      <IssueForm/>
+    </Container>
   )
 };
 

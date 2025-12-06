@@ -1,12 +1,12 @@
 
-import {Table} from '@radix-ui/themes';
-import IssueActions from './IssueActions';
+import {Container, Table} from '@radix-ui/themes';
+import IssueActions from './_components/IssueActions';
 import {Skeleton} from '@/app/components';
 
 const IssuePageLoading = () => {
     const issues = [1,2,3,4,5,6,7,8,9,10];
   return (
-    <>
+    <Container>
         <IssueActions/>
         <Table.Root className='mt-5' variant='surface'>
             <Table.Header>
@@ -35,7 +35,7 @@ const IssuePageLoading = () => {
             ))}
             </Table.Body>
         </Table.Root>
-    </>
+    </Container>
   )
 }
 

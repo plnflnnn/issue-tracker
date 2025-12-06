@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Button, TextField, Text, Box, Callout, Spinner } from '@radix-ui/themes';
+import { Button, TextField, Text, Box, Callout, Spinner, Flex } from '@radix-ui/themes';
 import dynamic from "next/dynamic";
 import "easymde/dist/easymde.min.css";
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
@@ -58,27 +58,31 @@ const IssueForm = ({issue}: {issue?: Issue}) => {
   }
 
     return (
-      <div className='max-w-xl'>
+      <>
         {error && (
           <Callout.Root color="red" className='mb-5'>
             <Callout.Text>{error}</Callout.Text>
           </Callout.Root>
         )}
-        <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
-            <Box maxWidth="500px">
-              <TextField.Root defaultValue={issue?.title} placeholder="Title" {...register("title", { required: true })} />
-            </Box>
-            {errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
-            <Controller name="description" control={control} defaultValue={issue?.description}
-              render={({field}) => <SimpleMDE placeholder="Description" {...field} />}>
-            </Controller>
-            {errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
-            <Button disabled={loading}>
-              {issue ? 'Update Issue' : 'Submit New Issue'} {'  '}
-              {loading && <Spinner size="1"/>}
-            </Button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Flex gap="5"  direction={{ initial: "column", md: "row" }}>
+              <Flex width="100%" maxWidth="1000px" gap="3" wrap="wrap" direction="column">
+                <TextField.Root defaultValue={issue?.title} placeholder="Title" {...register("title", { required: true })} />
+                {errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
+                <Controller name="description" control={control} defaultValue={issue?.description}
+                  render={({field}) => <SimpleMDE placeholder="Description" {...field} />}>
+                </Controller>
+              </Flex>
+              <Flex direction="column" wrap="wrap" minWidth="150px" maxWidth="100%">
+                  {errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
+                  <Button disabled={loading} >
+                    {issue ? 'Update Issue' : 'Submit New Issue'} {'  '}
+                    {loading && <Spinner size="1"/>}
+                  </Button>
+              </Flex>
+          </Flex>
         </form>
-      </div>
+      </>
 
   )
 };

@@ -1,4 +1,3 @@
-import React from 'react'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/prisma/client';
 import { issueSchema } from '../../validationSchemas';

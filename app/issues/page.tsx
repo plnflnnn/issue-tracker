@@ -1,14 +1,14 @@
-import {Table} from '@radix-ui/themes';
+import {Container, Table} from '@radix-ui/themes';
 import { prisma } from '@/prisma/client';
 import {IssueStatusBadge} from '@/app/components';
-import IssueActions from './IssueActions';
+import IssueActions from './_components/IssueActions';
 import Link from 'next/link';
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
 
   return (
-    <div>
+    <Container>
       <IssueActions/>
       <Table.Root className='mt-5' variant='surface'>
         <Table.Header>
@@ -37,7 +37,7 @@ const IssuesPage = async () => {
           ))}
         </Table.Body>
       </Table.Root>
-    </div>
+    </Container>
   )
 }
 

@@ -1,8 +1,11 @@
+import { Container } from "@radix-ui/themes"
 import IssueFormSkeleton from "../../_components/IssueFormSkeleton"
 
 const EditIssuePageLoading = () => {
   return (
-    <IssueFormSkeleton/>
+    <Container>
+      <IssueFormSkeleton/>
+    </Container>
   )
 }
 

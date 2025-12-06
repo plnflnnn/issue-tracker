@@ -1,4 +1,3 @@
-import React from 'react'
 import { Card, Heading, Text, Flex} from '@radix-ui/themes';
 import IssueStatusBadge from '@/app/components/IssueStatusBadge';
 import Markdown from 'react-markdown'
@@ -12,7 +11,7 @@ const IssueDetails = ({issue}: {issue: Issue}) => {
           <IssueStatusBadge status={issue.status} />
           <Text>{issue.createdAt.toDateString()}</Text>
         </Flex>
-        <Card className='prose'>
+        <Card className='prose max-w-full' mt="4">
           <Markdown >{issue.description}</Markdown>
         </Card>
     </>
