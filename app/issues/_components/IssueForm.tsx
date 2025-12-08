@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, TextField, Text, Box, Callout, Spinner, Flex } from '@radix-ui/themes';
 import dynamic from "next/dynamic";
 import "easymde/dist/easymde.min.css";
@@ -47,7 +47,7 @@ const IssueForm = ({issue}: {issue?: Issue}) => {
           body: JSON.stringify(data),
         })
       }
-      router.push('/issues/');
+      router.push('/issues/list');
       router.refresh();
     } catch(error) {
       console.log(error);

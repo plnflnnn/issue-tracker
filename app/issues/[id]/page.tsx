@@ -6,6 +6,8 @@ import EditIssueButton from '../_components/EditIssueButton';
 import DeleteIssueButton from '../_components/DeleteIssueButton';
 import { Session } from 'next-auth';
 import { auth } from '@/auth'; // NextAuth v5 server helper
+import AssigneeSelect from '../_components/AssigneeSelect';
+import StatusSelect from '../_components/StatusSelect';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -33,6 +35,8 @@ const IssueDetailPage = async ({ params }: Props) => {
 
         {session?.user ? <Box>
             <Flex direction="column" gap="4">
+              <AssigneeSelect issue={issue}/>
+              <StatusSelect issue={issue}/>
               <EditIssueButton issueId={id} />
               <DeleteIssueButton issueId={id} />
             </Flex>

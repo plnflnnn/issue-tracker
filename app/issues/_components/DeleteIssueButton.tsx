@@ -21,7 +21,7 @@ const DeleteIssueButton = ({issueId}: {issueId: string}) => {
                 'Content-Type': 'application/json',
             },
             });
-            router.push('/issues');
+            router.push('/issues/list');
             router.refresh();
             setDeleting(false);
         } catch(error) {
