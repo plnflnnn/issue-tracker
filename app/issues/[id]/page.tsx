@@ -8,14 +8,17 @@ import { Session } from 'next-auth';
 import { auth } from '@/auth'; // NextAuth v5 server helper
 import AssigneeSelect from '../_components/AssigneeSelect';
 import StatusSelect from '../_components/StatusSelect';
+import { cache } from 'react';
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
+const fetchUser = cache((issueId: number) => prisma.issue.findUnique({ where: { id: issueId }}));
+
 const IssueDetailPage = async ({ params }: Props) => {
   const { id } = await params;
-  const issue = await prisma.issue.findUnique({ where: { id: parseInt(id) } });
+  const issue = await fetchUser(parseInt(id));
 
   if (!issue) notFound();
   let session: Session | null = null;
@@ -47,4 +50,13 @@ const IssueDetailPage = async ({ params }: Props) => {
   );
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
+  const issue = await fetchUser(parseInt(id));
+
+  return {
+    title: issue?.title,
+    description: 'Details of issue ' + issue?.id
+  }
+}
 export default IssueDetailPage;

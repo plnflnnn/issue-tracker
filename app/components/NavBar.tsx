@@ -7,7 +7,6 @@ import { useSession, signOut } from 'next-auth/react';
 import { Avatar, Box, Container, DropdownMenu, Flex, Text } from '@radix-ui/themes';
 import {Skeleton} from '@/app/components';
 
-
 const NavBar = () => {
     return (
         <nav className='border-b mb-5 px-5 py-3'>
@@ -42,42 +41,44 @@ const NavLinks = () => {
         </ul>
     )
 }
+
 const AuthStatus = () => {
-    const {status, data: session} = useSession();
+  const { status, data: session } = useSession();
 
-    if(status === "loading") return <Skeleton width="3rem" />;
-    if(status === "unauthenticated") return <Link className='nav-link' href="/api/auth/signin">Login</Link>;
+  if (status === "loading") return <Skeleton width="3rem" />;
+  if (status === "unauthenticated") return <Link className='nav-link' href="/api/auth/signin">Login</Link>;
 
-    const onLogOut = async () => {
-        await signOut({ redirectTo: "/" });
-    };
+  const onLogOut = async () => await signOut({ callbackUrl: "/" });
 
-    return (
-        <Box>
-            {status === 'authenticated' && (
-                <DropdownMenu.Root>
-                    <DropdownMenu.Trigger>
-                        <Avatar
-                            src={session.user!.image!}
-                            fallback="?" size="2"
-                            radius="full"
-                            className='cursor-pointer'
-                            referrerPolicy='no-referrer' />
-                    </DropdownMenu.Trigger>
-                    <DropdownMenu.Content>
-                        <DropdownMenu.Label>
-                            <Text size="2">
-                                {session.user!.email}
-                            </Text>
-                        </DropdownMenu.Label>
-                        <DropdownMenu.Item>
-                            <Box onClick={onLogOut}>Log out</Box>
-                        </DropdownMenu.Item>
-                    </DropdownMenu.Content>
-                </DropdownMenu.Root>
-            )}
-        </Box>
-    )
-}
+  return (
+    <Box>
+      {status === 'authenticated' && (
+        <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+                <button className="p-0 bg-transparent border-0 cursor-pointer">
+                <Avatar
+                    src={session?.user?.image ?? undefined}
+                    fallback={session?.user?.email ? session.user.email[0].toUpperCase() : "?"}
+                    size="2"
+                    radius="full"
+                    className='cursor-pointer'
+                    referrerPolicy='no-referrer'
+                />
+                </button>
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Content>
+                <DropdownMenu.Label>
+                    <Text size="2">{session.user!.email}</Text>
+                </DropdownMenu.Label>
+                <DropdownMenu.Item>
+                    <Box onClick={onLogOut}>Log out</Box>
+                </DropdownMenu.Item>
+            </DropdownMenu.Content>
+        </DropdownMenu.Root>
+      )}
+    </Box>
+  );
+};
 
 export default NavBar

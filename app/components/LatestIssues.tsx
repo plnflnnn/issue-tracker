@@ -1,5 +1,5 @@
 import {prisma} from '@/prisma/client';
-import { Avatar, Card, Flex, Heading, Table } from '@radix-ui/themes';
+import { Card, Flex, Heading, Table } from '@radix-ui/themes';
 import IssueStatusBadge from './IssueStatusBadge';
 import Link from 'next/link';
 import { Issue } from '../generated/prisma/client';
@@ -9,9 +9,6 @@ const LatestIssues = async () => {
   const issues: Issue[] = await prisma.issue.findMany({
     orderBy: { createdAt: 'desc' },
     take: 5,
-    include: {
-      assignedToUser: true,
-    },
   });
 
   return (
@@ -22,14 +19,12 @@ const LatestIssues = async () => {
           {issues.map((issue) => (
             <Table.Row key={issue.id}>
               <Table.Cell>
-                <Flex justify="between">
                   <Flex direction="column" align="start" gap="2">
                     <Link href={`/issues/${issue.id}`}>
                       {issue.title}
                     </Link>
                     <IssueStatusBadge status={issue.status} />
                   </Flex>
-                </Flex>
               </Table.Cell>
             </Table.Row>
           ))}

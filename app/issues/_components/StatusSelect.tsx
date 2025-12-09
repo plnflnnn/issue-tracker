@@ -31,8 +31,6 @@ const StatusSelect = ({issue} : {issue: Issue}) => {
             <Select.Trigger />
             <Select.Content>
             <Select.Group>
-                {/* <Select.Label>Suggestions</Select.Label> */}
-                {/* <Select.Item value="unassigned">Unassigned</Select.Item> */}
                 {statuses && statuses.map(status => <Select.Item key={status.value} value={status.value}>{status.label}</Select.Item>)}
             </Select.Group>
             </Select.Content>
