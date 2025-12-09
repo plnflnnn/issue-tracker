@@ -39,8 +39,6 @@ const IssuesPage = async ({searchParams}: Props) => {
   if (whereObj) query.where = whereObj;
   if (orderByObj) query.orderBy = orderByObj;
 
-  console.log(query);
-
   const issues = await prisma.issue.findMany(query);
 
   const totalCount = await prisma.issue.count({
