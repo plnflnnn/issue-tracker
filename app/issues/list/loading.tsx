@@ -39,4 +39,5 @@ const IssuePageLoading = () => {
   )
 }
 
+
 export default IssuePageLoading
