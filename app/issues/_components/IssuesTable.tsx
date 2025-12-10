@@ -1,7 +1,7 @@
 import {Table} from '@radix-ui/themes';
 import {IssueStatusBadge} from '@/app/components';
 import Link from 'next/link';
-import { Status } from '../../generated/prisma/enums';
+import { Status } from '../../generated/prisma/client';
 import { Issue } from '../../generated/prisma/client';
 import { ArrowUpIcon } from '@radix-ui/react-icons';
 

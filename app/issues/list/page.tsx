@@ -2,7 +2,7 @@ import {Container} from '@radix-ui/themes';
 import { prisma } from '@/prisma/client';
 import {Pagination} from '@/app/components';
 import IssueActions from '../_components/IssueActions';
-import { Status } from '../../generated/prisma/enums';
+import { Status } from '../../generated/prisma/client';
 import { Metadata } from 'next';
 
 import IssuesTable , { IssueQuery, columnNames }from '../_components/IssuesTable';
