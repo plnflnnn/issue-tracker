@@ -1,4 +1,4 @@
-import { Status } from "../generated/prisma/enums";
+import { Status } from "../generated/prisma/client";
 import { Badge } from "@radix-ui/themes";
 
 
