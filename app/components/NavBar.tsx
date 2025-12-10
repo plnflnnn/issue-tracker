@@ -58,7 +58,7 @@ const AuthStatus = () => {
                 <button className="p-0 bg-transparent border-0 cursor-pointer">
                 <Avatar
                     src={session?.user?.image ?? undefined}
-                    fallback={session?.user?.email ? session.user.email[0].toUpperCase() : "?"}
+                    fallback={session?.user?.name ? session.user.name[0].toUpperCase() : "?"}
                     size="2"
                     radius="full"
                     className='cursor-pointer'
