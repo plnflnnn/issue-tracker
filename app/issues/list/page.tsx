@@ -29,8 +29,8 @@ const IssuesPage = async ({searchParams}: Props) => {
 
   const orderByObj =
     columnNames.includes(orderBy as any)
-      ? { [orderBy]: 'asc' }
-      : undefined;
+      ? { [orderBy]: 'desc' }
+      : { createdAt: 'desc' };
 
   let query: PrismaQuery = {
     skip: (pageNum - 1) * pageSize,
